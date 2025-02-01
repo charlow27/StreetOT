@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Streamlabs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: transparent;
+            color: white;
+            font-size: 3rem;
+        }
+        #timer {
+            display: inline-block;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">25:00</div>
+    <script>
+        let time = 25 * 60;
+        const timerElement = document.getElementById('timer');
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(time / 60);
+            const seconds = time % 60;
+            timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        function startTimer() {
+            const interval = setInterval(() => {
+                if (time > 0) {
+                    time--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+        
+        updateTimerDisplay();
+        startTimer();
+    </script>
+</body>
+</html>
